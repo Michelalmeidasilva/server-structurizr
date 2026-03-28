@@ -1,0 +1,1449 @@
+{
+  "configuration" : { },
+  "description" : "Description",
+  "documentation" : { },
+  "id" : 1,
+  "lastModifiedAgent" : "structurizr-ui",
+  "lastModifiedDate" : "2026-03-16T02:13:54Z",
+  "model" : {
+    "softwareSystems" : [ {
+      "description" : "Fonte primária de entrada dos vídeos.",
+      "documentation" : { },
+      "id" : "1",
+      "name" : "Origem (Ingestão dos vídeos)",
+      "properties" : {
+        "structurizr.dsl.identifier" : "origem"
+      },
+      "relationships" : [ {
+        "description" : "Envia vídeo para",
+        "destinationId" : "2",
+        "id" : "6",
+        "sourceId" : "1",
+        "tags" : "Relationship"
+      } ],
+      "tags" : "Element,Software System"
+    }, {
+      "description" : "Processamento e conversão de vídeos para múltiplos formatos e resoluções adequados para streaming.",
+      "documentation" : { },
+      "id" : "2",
+      "name" : "Transcodificação",
+      "properties" : {
+        "structurizr.dsl.identifier" : "transcodificacao"
+      },
+      "relationships" : [ {
+        "description" : "Repassa os arquivos convertidos para",
+        "destinationId" : "3",
+        "id" : "7",
+        "sourceId" : "2",
+        "tags" : "Relationship"
+      } ],
+      "tags" : "Element,Software System"
+    }, {
+      "description" : "DASH/HLS - Empacotamento para protocolos de streaming adaptativo.",
+      "documentation" : { },
+      "id" : "3",
+      "name" : "Empacotamento",
+      "properties" : {
+        "structurizr.dsl.identifier" : "empacotamento"
+      },
+      "relationships" : [ {
+        "description" : "Disponibiliza os segmentos via",
+        "destinationId" : "4",
+        "id" : "8",
+        "sourceId" : "3",
+        "tags" : "Relationship"
+      } ],
+      "tags" : "Element,Software System"
+    }, {
+      "description" : "Servidor de distribuição (CDN/Edge) para os clientes.",
+      "documentation" : { },
+      "id" : "4",
+      "name" : "Distribution Server",
+      "properties" : {
+        "structurizr.dsl.identifier" : "distribution"
+      },
+      "relationships" : [ {
+        "description" : "Entrega os vídeos para",
+        "destinationId" : "5",
+        "id" : "9",
+        "sourceId" : "4",
+        "tags" : "Relationship"
+      } ],
+      "tags" : "Element,Software System"
+    }, {
+      "description" : "Clientes reprodutores de mídia na ponta final.",
+      "documentation" : { },
+      "id" : "5",
+      "name" : "Media Players",
+      "properties" : {
+        "structurizr.dsl.identifier" : "mediaPlayers"
+      },
+      "tags" : "Element,Software System"
+    }, {
+      "description" : "Fonte externa ou usuário que envia o vídeo bruto.",
+      "documentation" : { },
+      "id" : "10",
+      "name" : "Fonte de Vídeo (Ingestão)",
+      "properties" : {
+        "structurizr.dsl.identifier" : "fonteVideoIngestao"
+      },
+      "relationships" : [ {
+        "description" : "1. Deposita arquivo",
+        "destinationId" : "12",
+        "id" : "17",
+        "sourceId" : "10",
+        "tags" : "Relationship"
+      }, {
+        "description" : "1. Deposita arquivo",
+        "destinationId" : "11",
+        "id" : "18",
+        "linkedRelationshipId" : "17",
+        "sourceId" : "10"
+      } ],
+      "tags" : "Element,Software System"
+    }, {
+      "containers" : [ {
+        "description" : "Diretório ou bucket cujo conteúdo é monitorado em busca de novos arquivos.",
+        "documentation" : { },
+        "id" : "12",
+        "name" : "Pasta Monitorada",
+        "properties" : {
+          "structurizr.dsl.identifier" : "moduloIngestao.pastaMonitorada"
+        },
+        "relationships" : [ {
+          "description" : "2. Detecta novo item",
+          "destinationId" : "13",
+          "id" : "15",
+          "sourceId" : "12",
+          "tags" : "Relationship"
+        } ],
+        "tags" : "Element,Container"
+      }, {
+        "description" : "Mecanismo que capta o evento de criação de arquivo e aciona o pipeline de forma automatizada.",
+        "documentation" : { },
+        "id" : "13",
+        "name" : "Gatilho Inteligente",
+        "properties" : {
+          "structurizr.dsl.identifier" : "moduloIngestao.gatilhoInteligente"
+        },
+        "relationships" : [ {
+          "description" : "3. Disparo Automático (Sem intervenção manual)",
+          "destinationId" : "14",
+          "id" : "16",
+          "sourceId" : "13",
+          "tags" : "Relationship"
+        } ],
+        "tags" : "Element,Container"
+      }, {
+        "description" : "Inicia a etapa seguinte sem intervenção manual.",
+        "documentation" : { },
+        "id" : "14",
+        "name" : "Iniciar Pipeline",
+        "properties" : {
+          "structurizr.dsl.identifier" : "moduloIngestao.iniciarPipeline"
+        },
+        "tags" : "Element,Container"
+      } ],
+      "description" : "Sistema responsável por receber os arquivos de vídeo para iniciar o processamento.",
+      "documentation" : { },
+      "id" : "11",
+      "name" : "Módulo de Ingestão (File-Based)",
+      "properties" : {
+        "structurizr.dsl.identifier" : "moduloIngestao"
+      },
+      "tags" : "Element,Software System"
+    }, {
+      "description" : "O vídeo bruto proveniente da ingestão.",
+      "documentation" : { },
+      "id" : "19",
+      "name" : "Vídeo Bruto",
+      "properties" : {
+        "structurizr.dsl.identifier" : "videoBruto"
+      },
+      "relationships" : [ {
+        "description" : "É processado por",
+        "destinationId" : "21",
+        "id" : "30",
+        "sourceId" : "19",
+        "tags" : "Relationship"
+      }, {
+        "description" : "É processado por",
+        "destinationId" : "20",
+        "id" : "31",
+        "linkedRelationshipId" : "30",
+        "sourceId" : "19"
+      } ],
+      "tags" : "Element,Software System"
+    }, {
+      "containers" : [ {
+        "description" : "Ferramenta de conversão e processamento de vídeo.",
+        "documentation" : { },
+        "id" : "21",
+        "name" : "FFmpeg",
+        "properties" : {
+          "structurizr.dsl.identifier" : "moduloTranscodificacao.ffmpeg"
+        },
+        "relationships" : [ {
+          "description" : "Gera",
+          "destinationId" : "23",
+          "id" : "32",
+          "sourceId" : "21",
+          "tags" : "Relationship"
+        }, {
+          "description" : "Gera",
+          "destinationId" : "22",
+          "id" : "33",
+          "linkedRelationshipId" : "32",
+          "sourceId" : "21"
+        }, {
+          "description" : "Gera",
+          "destinationId" : "24",
+          "id" : "34",
+          "sourceId" : "21",
+          "tags" : "Relationship"
+        }, {
+          "description" : "Gera",
+          "destinationId" : "25",
+          "id" : "35",
+          "sourceId" : "21",
+          "tags" : "Relationship"
+        }, {
+          "description" : "Gera",
+          "destinationId" : "26",
+          "id" : "36",
+          "sourceId" : "21",
+          "tags" : "Relationship"
+        }, {
+          "description" : "Gera",
+          "destinationId" : "27",
+          "id" : "37",
+          "sourceId" : "21",
+          "tags" : "Relationship"
+        }, {
+          "description" : "Gera",
+          "destinationId" : "28",
+          "id" : "38",
+          "sourceId" : "21",
+          "tags" : "Relationship"
+        } ],
+        "tags" : "Element,Container"
+      }, {
+        "components" : [ {
+          "description" : "Resolução: 360p (Redes Móveis)",
+          "documentation" : { },
+          "id" : "23",
+          "name" : "360p",
+          "properties" : {
+            "structurizr.dsl.identifier" : "moduloTranscodificacao.ladder.res360p"
+          },
+          "relationships" : [ {
+            "description" : "Salva em",
+            "destinationId" : "29",
+            "id" : "39",
+            "sourceId" : "23",
+            "tags" : "Relationship"
+          } ],
+          "tags" : "Element,Component"
+        }, {
+          "description" : "Resolução: 480p (Redes Móveis)",
+          "documentation" : { },
+          "id" : "24",
+          "name" : "480p",
+          "properties" : {
+            "structurizr.dsl.identifier" : "moduloTranscodificacao.ladder.res480p"
+          },
+          "relationships" : [ {
+            "description" : "Salva em",
+            "destinationId" : "29",
+            "id" : "42",
+            "sourceId" : "24",
+            "tags" : "Relationship"
+          } ],
+          "tags" : "Element,Component"
+        }, {
+          "description" : "Resolução: 720p HD (Banda Larga)",
+          "documentation" : { },
+          "id" : "25",
+          "name" : "720p",
+          "properties" : {
+            "structurizr.dsl.identifier" : "moduloTranscodificacao.ladder.res720p"
+          },
+          "relationships" : [ {
+            "description" : "Salva em",
+            "destinationId" : "29",
+            "id" : "43",
+            "sourceId" : "25",
+            "tags" : "Relationship"
+          } ],
+          "tags" : "Element,Component"
+        }, {
+          "description" : "Resolução: 1080p Full HD (Banda Larga)",
+          "documentation" : { },
+          "id" : "26",
+          "name" : "1080p",
+          "properties" : {
+            "structurizr.dsl.identifier" : "moduloTranscodificacao.ladder.res1080p"
+          },
+          "relationships" : [ {
+            "description" : "Salva em",
+            "destinationId" : "29",
+            "id" : "44",
+            "sourceId" : "26",
+            "tags" : "Relationship"
+          } ],
+          "tags" : "Element,Component"
+        }, {
+          "description" : "Resolução: 1440p QHD (Fibra Óptica)",
+          "documentation" : { },
+          "id" : "27",
+          "name" : "1440p",
+          "properties" : {
+            "structurizr.dsl.identifier" : "moduloTranscodificacao.ladder.res1440p"
+          },
+          "relationships" : [ {
+            "description" : "Salva em",
+            "destinationId" : "29",
+            "id" : "45",
+            "sourceId" : "27",
+            "tags" : "Relationship"
+          } ],
+          "tags" : "Element,Component"
+        }, {
+          "description" : "Resolução: 2160p 4K UHD (Fibra Óptica)",
+          "documentation" : { },
+          "id" : "28",
+          "name" : "2160p 4K",
+          "properties" : {
+            "structurizr.dsl.identifier" : "moduloTranscodificacao.ladder.res2160p"
+          },
+          "relationships" : [ {
+            "description" : "Salva em",
+            "destinationId" : "29",
+            "id" : "46",
+            "sourceId" : "28",
+            "tags" : "Relationship"
+          } ],
+          "tags" : "Element,Component"
+        } ],
+        "description" : "Conjunto de resoluções para streaming adaptativo.",
+        "documentation" : { },
+        "id" : "22",
+        "name" : "Bitrate Ladder",
+        "properties" : {
+          "structurizr.dsl.identifier" : "moduloTranscodificacao.ladder"
+        },
+        "relationships" : [ {
+          "description" : "Salva em",
+          "destinationId" : "29",
+          "id" : "40",
+          "linkedRelationshipId" : "39",
+          "sourceId" : "22"
+        } ],
+        "tags" : "Element,Container"
+      } ],
+      "description" : "Converte os vídeos originais para diversos formatos e resoluções.",
+      "documentation" : { },
+      "id" : "20",
+      "name" : "Módulo de Transcodificação",
+      "properties" : {
+        "structurizr.dsl.identifier" : "moduloTranscodificacao"
+      },
+      "relationships" : [ {
+        "description" : "Salva em",
+        "destinationId" : "29",
+        "id" : "41",
+        "linkedRelationshipId" : "39",
+        "sourceId" : "20"
+      } ],
+      "tags" : "Element,Software System"
+    }, {
+      "description" : "Destino seguro onde as várias versões do arquivo são guardadas.",
+      "documentation" : { },
+      "id" : "29",
+      "name" : "Armazenamento",
+      "properties" : {
+        "structurizr.dsl.identifier" : "armazenamento"
+      },
+      "tags" : "Element,Software System"
+    }, {
+      "containers" : [ {
+        "components" : [ {
+          "description" : "Alta Performance - Serve como a origem dos arquivos de mídia empacotados.",
+          "documentation" : { },
+          "id" : "49",
+          "name" : "Nginx Origin Server",
+          "properties" : {
+            "structurizr.dsl.identifier" : "moduloDistribuicao.camadaOrigem.nginxOrigin"
+          },
+          "relationships" : [ {
+            "description" : "Define políticas para",
+            "destinationId" : "50",
+            "id" : "55",
+            "sourceId" : "49",
+            "tags" : "Relationship"
+          } ],
+          "tags" : "Element,Component"
+        } ],
+        "description" : "A camada que contém os vídeos originais.",
+        "documentation" : { },
+        "id" : "48",
+        "name" : "Camada de Origem",
+        "properties" : {
+          "structurizr.dsl.identifier" : "moduloDistribuicao.camadaOrigem"
+        },
+        "relationships" : [ {
+          "description" : "Define políticas para",
+          "destinationId" : "50",
+          "id" : "56",
+          "linkedRelationshipId" : "55",
+          "sourceId" : "48"
+        } ],
+        "tags" : "Element,Container"
+      }, {
+        "description" : "Políticas de cache para otimização da entrega.",
+        "documentation" : { },
+        "id" : "50",
+        "name" : "Cache-Control",
+        "properties" : {
+          "structurizr.dsl.identifier" : "moduloDistribuicao.cacheControl"
+        },
+        "relationships" : [ {
+          "description" : "Aplica regras em",
+          "destinationId" : "52",
+          "id" : "57",
+          "sourceId" : "50",
+          "tags" : "Relationship"
+        }, {
+          "description" : "Aplica regras em",
+          "destinationId" : "51",
+          "id" : "58",
+          "linkedRelationshipId" : "57",
+          "sourceId" : "50"
+        } ],
+        "tags" : "Element,Container"
+      }, {
+        "components" : [ {
+          "description" : "Servidor de borda que entrega o conteúdo aos clientes.",
+          "documentation" : { },
+          "id" : "52",
+          "name" : "Nginx Edge Server",
+          "properties" : {
+            "structurizr.dsl.identifier" : "moduloDistribuicao.camadaBorda.nginxEdge"
+          },
+          "relationships" : [ {
+            "description" : "Habilita acesso cruzado usando",
+            "destinationId" : "53",
+            "id" : "59",
+            "sourceId" : "52",
+            "tags" : "Relationship"
+          }, {
+            "description" : "Entrega vídeo via HTTP/2",
+            "destinationId" : "54",
+            "id" : "60",
+            "sourceId" : "52",
+            "tags" : "Relationship"
+          }, {
+            "description" : "Entrega vídeo via HTTP/3 (QUIC)",
+            "destinationId" : "54",
+            "id" : "63",
+            "sourceId" : "52",
+            "tags" : "Relationship"
+          } ],
+          "tags" : "Element,Component"
+        }, {
+          "description" : "Permite acesso de diferentes domínios.",
+          "documentation" : { },
+          "id" : "53",
+          "name" : "CORS Habilitado",
+          "properties" : {
+            "structurizr.dsl.identifier" : "moduloDistribuicao.camadaBorda.cors"
+          },
+          "tags" : "Element,Component"
+        } ],
+        "description" : "Camada de borda para entrega rápida.",
+        "documentation" : { },
+        "id" : "51",
+        "name" : "Camada de Borda (Edge)",
+        "properties" : {
+          "structurizr.dsl.identifier" : "moduloDistribuicao.camadaBorda"
+        },
+        "relationships" : [ {
+          "description" : "Entrega vídeo via HTTP/2",
+          "destinationId" : "54",
+          "id" : "61",
+          "linkedRelationshipId" : "60",
+          "sourceId" : "51"
+        } ],
+        "tags" : "Element,Container"
+      } ],
+      "description" : "Simulação de CDN Nginx para distribuir os vídeos aos usuários.",
+      "documentation" : { },
+      "id" : "47",
+      "name" : "Módulo de Distribuição",
+      "properties" : {
+        "structurizr.dsl.identifier" : "moduloDistribuicao"
+      },
+      "relationships" : [ {
+        "description" : "Entrega vídeo via HTTP/2",
+        "destinationId" : "54",
+        "id" : "62",
+        "linkedRelationshipId" : "60",
+        "sourceId" : "47"
+      } ],
+      "tags" : "Element,Software System"
+    }, {
+      "description" : "Cliente que consome o vídeo (dispositivos móveis, web, smart TVs).",
+      "documentation" : { },
+      "id" : "54",
+      "name" : "Player",
+      "properties" : {
+        "structurizr.dsl.identifier" : "playerDistribuicao"
+      },
+      "tags" : "Element,Software System"
+    }, {
+      "description" : "A origem do conteúdo de vídeo pre-transcodificado.",
+      "documentation" : { },
+      "id" : "64",
+      "name" : "Fonte de Vídeo (Empacotamento)",
+      "properties" : {
+        "structurizr.dsl.identifier" : "fonteVideoEmpacotamento"
+      },
+      "relationships" : [ {
+        "description" : "Envia vídeo para",
+        "destinationId" : "66",
+        "id" : "76",
+        "sourceId" : "64",
+        "tags" : "Relationship"
+      }, {
+        "description" : "Envia vídeo para",
+        "destinationId" : "65",
+        "id" : "77",
+        "linkedRelationshipId" : "76",
+        "sourceId" : "64"
+      } ],
+      "tags" : "Element,Software System"
+    }, {
+      "containers" : [ {
+        "components" : [ {
+          "description" : "Pedaço do vídeo.",
+          "documentation" : { },
+          "id" : "67",
+          "name" : "Segmento 1",
+          "properties" : {
+            "structurizr.dsl.identifier" : "servidorEmpacotamento.media.segmento1"
+          },
+          "tags" : "Element,Component"
+        }, {
+          "description" : "Pedaço do vídeo.",
+          "documentation" : { },
+          "id" : "68",
+          "name" : "Segmento 2",
+          "properties" : {
+            "structurizr.dsl.identifier" : "servidorEmpacotamento.media.segmento2"
+          },
+          "tags" : "Element,Component"
+        }, {
+          "description" : "Pedaço do vídeo.",
+          "documentation" : { },
+          "id" : "69",
+          "name" : "Segmento 3",
+          "properties" : {
+            "structurizr.dsl.identifier" : "servidorEmpacotamento.media.segmento3"
+          },
+          "tags" : "Element,Component"
+        }, {
+          "description" : "Pedaço do vídeo.",
+          "documentation" : { },
+          "id" : "70",
+          "name" : "Segmento 4",
+          "properties" : {
+            "structurizr.dsl.identifier" : "servidorEmpacotamento.media.segmento4"
+          },
+          "tags" : "Element,Component"
+        }, {
+          "description" : "Pedaço do vídeo.",
+          "documentation" : { },
+          "id" : "71",
+          "name" : "Segmento 5",
+          "properties" : {
+            "structurizr.dsl.identifier" : "servidorEmpacotamento.media.segmento5"
+          },
+          "tags" : "Element,Component"
+        }, {
+          "description" : "Manifesto (ex: m3u8 ou mpd) que descreve os segmentos e representações de qualidade disponíveis (BANDWIDTH, RESOLUTION, CODECS).",
+          "documentation" : { },
+          "id" : "72",
+          "name" : "Arquivo manifesto",
+          "properties" : {
+            "structurizr.dsl.identifier" : "servidorEmpacotamento.media.arquivoManifesto"
+          },
+          "tags" : "Element,Component"
+        } ],
+        "description" : "Conteúdo de mídia empacotado.",
+        "documentation" : { },
+        "id" : "66",
+        "name" : "Media",
+        "properties" : {
+          "structurizr.dsl.identifier" : "servidorEmpacotamento.media"
+        },
+        "tags" : "Element,Container"
+      } ],
+      "description" : "Servidor responsável por empacotar o vídeo.",
+      "documentation" : { },
+      "id" : "65",
+      "name" : "Servidor de Empacotamento",
+      "properties" : {
+        "structurizr.dsl.identifier" : "servidorEmpacotamento"
+      },
+      "tags" : "Element,Software System"
+    }, {
+      "description" : "O player do usuário consumindo o vídeo.",
+      "documentation" : { },
+      "id" : "73",
+      "name" : "Video player",
+      "properties" : {
+        "structurizr.dsl.identifier" : "videoPlayer"
+      },
+      "relationships" : [ {
+        "description" : "Utiliza",
+        "destinationId" : "74",
+        "id" : "78",
+        "sourceId" : "73",
+        "tags" : "Relationship"
+      } ],
+      "tags" : "Element,Software System"
+    }, {
+      "description" : "Lógica no player que decide qual segmento baixar baseado na rede.",
+      "documentation" : { },
+      "id" : "74",
+      "name" : "Lógica de adaptação",
+      "properties" : {
+        "structurizr.dsl.identifier" : "logicaAdaptacao"
+      },
+      "relationships" : [ {
+        "description" : "Controla o",
+        "destinationId" : "75",
+        "id" : "79",
+        "sourceId" : "74",
+        "tags" : "Relationship"
+      } ],
+      "tags" : "Element,Software System"
+    }, {
+      "description" : "Aparelho do usuário (computador, smartphone, etc.) que decodifica e mostra o vídeo.",
+      "documentation" : { },
+      "id" : "75",
+      "name" : "Dispositivo",
+      "properties" : {
+        "structurizr.dsl.identifier" : "dispositivo"
+      },
+      "relationships" : [ {
+        "description" : "Baixa manifesto inicial (1. Cliente pede vídeo)",
+        "destinationId" : "72",
+        "id" : "80",
+        "sourceId" : "75",
+        "tags" : "Relationship"
+      }, {
+        "description" : "Baixa manifesto inicial (1. Cliente pede vídeo)",
+        "destinationId" : "66",
+        "id" : "81",
+        "linkedRelationshipId" : "80",
+        "sourceId" : "75"
+      }, {
+        "description" : "Baixa manifesto inicial (1. Cliente pede vídeo)",
+        "destinationId" : "65",
+        "id" : "82",
+        "linkedRelationshipId" : "80",
+        "sourceId" : "75"
+      }, {
+        "description" : "Baixa segmento (2. Baixa segmentos)",
+        "destinationId" : "67",
+        "id" : "83",
+        "sourceId" : "75",
+        "tags" : "Relationship"
+      }, {
+        "description" : "Baixa segmento",
+        "destinationId" : "68",
+        "id" : "84",
+        "sourceId" : "75",
+        "tags" : "Relationship"
+      }, {
+        "description" : "Baixa segmento",
+        "destinationId" : "69",
+        "id" : "85",
+        "sourceId" : "75",
+        "tags" : "Relationship"
+      }, {
+        "description" : "Atinge Playback contínuo (3. Playback contínuo)",
+        "destinationId" : "72",
+        "id" : "86",
+        "sourceId" : "75",
+        "tags" : "Relationship"
+      } ],
+      "tags" : "Element,Software System"
+    }, {
+      "containers" : [ {
+        "description" : "Métricas de infraestrutura.",
+        "documentation" : { },
+        "id" : "88",
+        "name" : "Métricas de Servidor",
+        "properties" : {
+          "structurizr.dsl.identifier" : "ambienteServidores.metricasServidor"
+        },
+        "relationships" : [ {
+          "description" : "Envia dados para",
+          "destinationId" : "94",
+          "id" : "97",
+          "sourceId" : "88",
+          "tags" : "Relationship"
+        }, {
+          "description" : "Envia dados para",
+          "destinationId" : "93",
+          "id" : "98",
+          "linkedRelationshipId" : "97",
+          "sourceId" : "88"
+        } ],
+        "tags" : "Element,Container"
+      }, {
+        "description" : "Tempo de Transcode, Latência, Cache Hit/Miss.",
+        "documentation" : { },
+        "id" : "89",
+        "name" : "Métricas de Aplicação",
+        "properties" : {
+          "structurizr.dsl.identifier" : "ambienteServidores.metricasAplicacao"
+        },
+        "relationships" : [ {
+          "description" : "Envia métricas de negócio para",
+          "destinationId" : "94",
+          "id" : "101",
+          "sourceId" : "89",
+          "tags" : "Relationship"
+        }, {
+          "description" : "Envia métricas de negócio para",
+          "destinationId" : "93",
+          "id" : "102",
+          "linkedRelationshipId" : "101",
+          "sourceId" : "89"
+        } ],
+        "tags" : "Element,Container"
+      }, {
+        "description" : "Agregação de componentes.",
+        "documentation" : { },
+        "id" : "90",
+        "name" : "Logs Centralizados",
+        "properties" : {
+          "structurizr.dsl.identifier" : "ambienteServidores.logsCentralizados"
+        },
+        "relationships" : [ {
+          "description" : "Envia logs de erro/info para",
+          "destinationId" : "94",
+          "id" : "103",
+          "sourceId" : "90",
+          "tags" : "Relationship"
+        }, {
+          "description" : "Envia logs de erro/info para",
+          "destinationId" : "93",
+          "id" : "104",
+          "linkedRelationshipId" : "103",
+          "sourceId" : "90"
+        } ],
+        "tags" : "Element,Container"
+      } ],
+      "description" : "Componentes do servidor gerando métricas.",
+      "documentation" : { },
+      "id" : "87",
+      "name" : "Ambiente de Servidores",
+      "properties" : {
+        "structurizr.dsl.identifier" : "ambienteServidores"
+      },
+      "relationships" : [ {
+        "description" : "Envia dados para",
+        "destinationId" : "94",
+        "id" : "99",
+        "linkedRelationshipId" : "97",
+        "sourceId" : "87"
+      }, {
+        "description" : "Envia dados para",
+        "destinationId" : "93",
+        "id" : "100",
+        "linkedRelationshipId" : "97",
+        "sourceId" : "87"
+      } ],
+      "tags" : "Element,Software System"
+    }, {
+      "containers" : [ {
+        "description" : "Métricas enviadas pelos players dos usuários.",
+        "documentation" : { },
+        "id" : "92",
+        "name" : "Telemetria do Cliente",
+        "properties" : {
+          "structurizr.dsl.identifier" : "ambienteCliente.telemetriaCliente"
+        },
+        "relationships" : [ {
+          "description" : "Envio via Endpoint de eventos do player",
+          "destinationId" : "94",
+          "id" : "105",
+          "sourceId" : "92",
+          "tags" : "Relationship"
+        }, {
+          "description" : "Envio via Endpoint de eventos do player",
+          "destinationId" : "93",
+          "id" : "106",
+          "linkedRelationshipId" : "105",
+          "sourceId" : "92"
+        } ],
+        "tags" : "Element,Container"
+      } ],
+      "description" : "Componentes no uso final.",
+      "documentation" : { },
+      "id" : "91",
+      "name" : "Ambiente do Cliente",
+      "properties" : {
+        "structurizr.dsl.identifier" : "ambienteCliente"
+      },
+      "relationships" : [ {
+        "description" : "Envio via Endpoint de eventos do player",
+        "destinationId" : "94",
+        "id" : "107",
+        "linkedRelationshipId" : "105",
+        "sourceId" : "91"
+      }, {
+        "description" : "Envio via Endpoint de eventos do player",
+        "destinationId" : "93",
+        "id" : "108",
+        "linkedRelationshipId" : "105",
+        "sourceId" : "91"
+      } ],
+      "tags" : "Element,Software System"
+    }, {
+      "containers" : [ {
+        "description" : "Ponto de entrada único para receber todas as métricas enviadas.",
+        "documentation" : { },
+        "id" : "94",
+        "name" : "Caddy Server (Coletor/Gateway)",
+        "properties" : {
+          "structurizr.dsl.identifier" : "servidorMonitoramento.caddyServer"
+        },
+        "relationships" : [ {
+          "description" : "Armazena eventos em",
+          "destinationId" : "95",
+          "id" : "109",
+          "sourceId" : "94",
+          "tags" : "Relationship"
+        } ],
+        "tags" : "Element,Container"
+      }, {
+        "description" : "Armazenamento das métricas e logs coletados.",
+        "documentation" : { },
+        "id" : "95",
+        "name" : "Banco de Dados",
+        "properties" : {
+          "structurizr.dsl.identifier" : "servidorMonitoramento.bancoDados"
+        },
+        "relationships" : [ {
+          "description" : "Provê dados para",
+          "destinationId" : "96",
+          "id" : "110",
+          "sourceId" : "95",
+          "tags" : "Relationship"
+        } ],
+        "tags" : "Element,Container"
+      }, {
+        "description" : "Interface visual para monitoramento do sistema (ex: Grafana).",
+        "documentation" : { },
+        "id" : "96",
+        "name" : "Dashboards",
+        "properties" : {
+          "structurizr.dsl.identifier" : "servidorMonitoramento.dashboards"
+        },
+        "tags" : "Element,Container"
+      } ],
+      "description" : "Agrega e exibe métricas de todo o sistema.",
+      "documentation" : { },
+      "id" : "93",
+      "name" : "Servidor de Monitoramento (Caddy)",
+      "properties" : {
+        "structurizr.dsl.identifier" : "servidorMonitoramento"
+      },
+      "tags" : "Element,Software System"
+    }, {
+      "containers" : [ {
+        "components" : [ {
+          "description" : "1. Baixa Manifesto \n 2. Solicita Segmentos",
+          "documentation" : { },
+          "id" : "113",
+          "name" : "Núcleo de Orquestração",
+          "properties" : {
+            "structurizr.dsl.identifier" : "ambienteNavegador.playerPrincipal.nucleoOrquestracao"
+          },
+          "relationships" : [ {
+            "description" : "Manda dados para",
+            "destinationId" : "114",
+            "id" : "120",
+            "sourceId" : "113",
+            "tags" : "Relationship"
+          }, {
+            "description" : "Fornece estado para",
+            "destinationId" : "115",
+            "id" : "121",
+            "sourceId" : "113",
+            "tags" : "Relationship"
+          } ],
+          "tags" : "Element,Component"
+        }, {
+          "description" : "Responsável pela decodificação nativa do vídeo.",
+          "documentation" : { },
+          "id" : "114",
+          "name" : "MSE API",
+          "properties" : {
+            "structurizr.dsl.identifier" : "ambienteNavegador.playerPrincipal.mseApi"
+          },
+          "tags" : "Element,Component"
+        }, {
+          "description" : "Estimativa de Banda & Seleção de Representação.",
+          "documentation" : { },
+          "id" : "115",
+          "name" : "Algoritmo ABR",
+          "properties" : {
+            "structurizr.dsl.identifier" : "ambienteNavegador.playerPrincipal.algoritmoABr"
+          },
+          "relationships" : [ {
+            "description" : "Dita quais segmentos baixar",
+            "destinationId" : "113",
+            "id" : "122",
+            "sourceId" : "115",
+            "tags" : "Relationship"
+          } ],
+          "tags" : "Element,Component"
+        } ],
+        "description" : "O núcleo do reprodutor web.",
+        "documentation" : { },
+        "id" : "112",
+        "name" : "Player Principal",
+        "properties" : {
+          "structurizr.dsl.identifier" : "ambienteNavegador.playerPrincipal"
+        },
+        "relationships" : [ {
+          "description" : "Monitoramento em Tempo Real",
+          "destinationId" : "116",
+          "id" : "123",
+          "sourceId" : "112",
+          "tags" : "Relationship"
+        } ],
+        "tags" : "Element,Container"
+      }, {
+        "components" : [ {
+          "description" : "Startup Time, Rebuffering Events, Bitrate Médio/Oscilações, Nível do Buffer, Throughput Estimado.",
+          "documentation" : { },
+          "id" : "117",
+          "name" : "Métricas Capturadas",
+          "properties" : {
+            "structurizr.dsl.identifier" : "ambienteNavegador.instrumentacao.metricasCapturadas"
+          },
+          "relationships" : [ {
+            "description" : "Alimenta fila de",
+            "destinationId" : "118",
+            "id" : "124",
+            "sourceId" : "117",
+            "tags" : "Relationship"
+          } ],
+          "tags" : "Element,Component"
+        }, {
+          "description" : "Agrupa eventos e os envia via Logs JSON.",
+          "documentation" : { },
+          "id" : "118",
+          "name" : "Envio Periódico",
+          "properties" : {
+            "structurizr.dsl.identifier" : "ambienteNavegador.instrumentacao.envioPeriodico"
+          },
+          "relationships" : [ {
+            "description" : "Envia Logs JSON periodicamente para",
+            "destinationId" : "119",
+            "id" : "125",
+            "sourceId" : "118",
+            "tags" : "Relationship"
+          } ],
+          "tags" : "Element,Component"
+        } ],
+        "description" : "Captura de qualidade de experiência do usuário.",
+        "documentation" : { },
+        "id" : "116",
+        "name" : "Instrumentação (Coleta de QoE)",
+        "properties" : {
+          "structurizr.dsl.identifier" : "ambienteNavegador.instrumentacao"
+        },
+        "relationships" : [ {
+          "description" : "Envia Logs JSON periodicamente para",
+          "destinationId" : "119",
+          "id" : "126",
+          "linkedRelationshipId" : "125",
+          "sourceId" : "116"
+        } ],
+        "tags" : "Element,Container"
+      } ],
+      "description" : "A camada do cliente onde o vídeo é executado.",
+      "documentation" : { },
+      "id" : "111",
+      "name" : "Ambiente do Navegador (Client-Side)",
+      "properties" : {
+        "structurizr.dsl.identifier" : "ambienteNavegador"
+      },
+      "relationships" : [ {
+        "description" : "Envia Logs JSON periodicamente para",
+        "destinationId" : "119",
+        "id" : "127",
+        "linkedRelationshipId" : "125",
+        "sourceId" : "111"
+      } ],
+      "tags" : "Element,Software System"
+    }, {
+      "description" : "O backend que recebe os dados de QoE e instrumentação.",
+      "documentation" : { },
+      "id" : "119",
+      "name" : "Servidor de Telemetria",
+      "properties" : {
+        "structurizr.dsl.identifier" : "servidorTelemetria"
+      },
+      "tags" : "Element,Software System"
+    } ]
+  },
+  "name" : "Video on Demand Architecture",
+  "properties" : {
+    "structurizr.inspection.info" : "0",
+    "structurizr.inspection.ignore" : "0",
+    "structurizr.inspection.error" : "132",
+    "structurizr.inspection.warning" : "0"
+  },
+  "views" : {
+    "componentViews" : [ {
+      "automaticLayout" : {
+        "applied" : true,
+        "edgeSeparation" : 0,
+        "implementation" : "Graphviz",
+        "nodeSeparation" : 300,
+        "rankDirection" : "LeftRight",
+        "rankSeparation" : 300,
+        "vertices" : false
+      },
+      "containerId" : "22",
+      "dimensions" : {
+        "height" : 3938,
+        "width" : 2370
+      },
+      "elements" : [ {
+        "id" : "21",
+        "x" : 219,
+        "y" : 1699
+      }, {
+        "id" : "23",
+        "x" : 969,
+        "y" : 199
+      }, {
+        "id" : "24",
+        "x" : 969,
+        "y" : 799
+      }, {
+        "id" : "25",
+        "x" : 969,
+        "y" : 1399
+      }, {
+        "id" : "26",
+        "x" : 969,
+        "y" : 1999
+      }, {
+        "id" : "27",
+        "x" : 969,
+        "y" : 2599
+      }, {
+        "id" : "28",
+        "x" : 969,
+        "y" : 3199
+      }, {
+        "id" : "29",
+        "x" : 1719,
+        "y" : 1699
+      } ],
+      "externalContainerBoundariesVisible" : false,
+      "key" : "TranscodificacaoArchitecture",
+      "name" : "Component View: Módulo de Transcodificação - Bitrate Ladder",
+      "order" : 3,
+      "relationships" : [ {
+        "id" : "32",
+        "vertices" : [ {
+          "x" : 865,
+          "y" : 649
+        } ]
+      }, {
+        "id" : "34",
+        "vertices" : [ {
+          "x" : 865,
+          "y" : 1249
+        } ]
+      }, {
+        "id" : "35"
+      }, {
+        "id" : "36"
+      }, {
+        "id" : "37",
+        "vertices" : [ {
+          "x" : 865,
+          "y" : 2449
+        } ]
+      }, {
+        "id" : "38",
+        "vertices" : [ {
+          "x" : 865,
+          "y" : 3049
+        } ]
+      }, {
+        "id" : "39",
+        "vertices" : [ {
+          "x" : 1627,
+          "y" : 649
+        } ]
+      }, {
+        "id" : "42",
+        "vertices" : [ {
+          "x" : 1627,
+          "y" : 1249
+        } ]
+      }, {
+        "id" : "43"
+      }, {
+        "id" : "44"
+      }, {
+        "id" : "45",
+        "vertices" : [ {
+          "x" : 1627,
+          "y" : 2449
+        } ]
+      }, {
+        "id" : "46",
+        "vertices" : [ {
+          "x" : 1627,
+          "y" : 3049
+        } ]
+      } ]
+    }, {
+      "automaticLayout" : {
+        "applied" : true,
+        "edgeSeparation" : 0,
+        "implementation" : "Graphviz",
+        "nodeSeparation" : 300,
+        "rankDirection" : "TopBottom",
+        "rankSeparation" : 300,
+        "vertices" : false
+      },
+      "containerId" : "66",
+      "dimensions" : {
+        "height" : 1498,
+        "width" : 4680
+      },
+      "elements" : [ {
+        "id" : "67",
+        "x" : 3990,
+        "y" : 760
+      }, {
+        "id" : "68",
+        "x" : 3240,
+        "y" : 760
+      }, {
+        "id" : "69",
+        "x" : 2490,
+        "y" : 760
+      }, {
+        "id" : "70",
+        "x" : 1740,
+        "y" : 760
+      }, {
+        "id" : "71",
+        "x" : 990,
+        "y" : 760
+      }, {
+        "id" : "72",
+        "x" : 240,
+        "y" : 760
+      }, {
+        "id" : "75",
+        "x" : 2490,
+        "y" : 160
+      } ],
+      "externalContainerBoundariesVisible" : false,
+      "key" : "EmpacotamentoArchitecture",
+      "name" : "Component View: Servidor de Empacotamento - Media",
+      "order" : 5,
+      "relationships" : [ {
+        "id" : "80",
+        "vertices" : [ {
+          "x" : 690,
+          "y" : 552
+        } ]
+      }, {
+        "id" : "83",
+        "vertices" : [ {
+          "x" : 3840,
+          "y" : 552
+        } ]
+      }, {
+        "id" : "84",
+        "vertices" : [ {
+          "x" : 3090,
+          "y" : 552
+        } ]
+      }, {
+        "id" : "85"
+      }, {
+        "id" : "86",
+        "vertices" : [ {
+          "x" : 990,
+          "y" : 552
+        } ]
+      } ]
+    }, {
+      "automaticLayout" : {
+        "applied" : true,
+        "edgeSeparation" : 0,
+        "implementation" : "Graphviz",
+        "nodeSeparation" : 300,
+        "rankDirection" : "TopBottom",
+        "rankSeparation" : 300,
+        "vertices" : false
+      },
+      "containerId" : "112",
+      "dimensions" : {
+        "height" : 1538,
+        "width" : 1680
+      },
+      "elements" : [ {
+        "id" : "113",
+        "x" : 990,
+        "y" : 200
+      }, {
+        "id" : "114",
+        "x" : 240,
+        "y" : 800
+      }, {
+        "id" : "115",
+        "x" : 990,
+        "y" : 800
+      } ],
+      "externalContainerBoundariesVisible" : false,
+      "key" : "ReproducaoArchitecture",
+      "name" : "Component View: Ambiente do Navegador (Client-Side) - Player Principal",
+      "order" : 7,
+      "relationships" : [ {
+        "id" : "120"
+      }, {
+        "id" : "121",
+        "vertices" : [ {
+          "x" : 1065,
+          "y" : 650
+        } ]
+      }, {
+        "id" : "122",
+        "vertices" : [ {
+          "x" : 1365,
+          "y" : 650
+        } ]
+      } ]
+    } ],
+    "configuration" : {
+      "branding" : { },
+      "lastSavedView" : "ReproducaoArchitecture",
+      "metadataSymbols" : "SquareBrackets",
+      "styles" : {
+        "elements" : [ {
+          "background" : "#85bbf0",
+          "color" : "#000000",
+          "tag" : "Component"
+        }, {
+          "background" : "#438dd5",
+          "color" : "#ffffff",
+          "tag" : "Container"
+        }, {
+          "shape" : "RoundedBox",
+          "tag" : "Element"
+        }, {
+          "background" : "#1168bd",
+          "color" : "#ffffff",
+          "tag" : "Software System"
+        } ]
+      },
+      "terminology" : { },
+      "themes" : [ "https://static.structurizr.com/themes/default/theme.json" ]
+    },
+    "containerViews" : [ {
+      "automaticLayout" : {
+        "applied" : true,
+        "edgeSeparation" : 0,
+        "implementation" : "Graphviz",
+        "nodeSeparation" : 300,
+        "rankDirection" : "LeftRight",
+        "rankSeparation" : 300,
+        "vertices" : false
+      },
+      "dimensions" : {
+        "height" : 819,
+        "width" : 3120
+      },
+      "elements" : [ {
+        "id" : "10",
+        "x" : 199,
+        "y" : 179
+      }, {
+        "id" : "12",
+        "x" : 949,
+        "y" : 179
+      }, {
+        "id" : "13",
+        "x" : 1699,
+        "y" : 179
+      }, {
+        "id" : "14",
+        "x" : 2449,
+        "y" : 179
+      } ],
+      "externalSoftwareSystemBoundariesVisible" : false,
+      "key" : "IngestaoArchitecture",
+      "name" : "Container View: Módulo de Ingestão (File-Based)",
+      "order" : 2,
+      "relationships" : [ {
+        "id" : "15"
+      }, {
+        "id" : "16"
+      }, {
+        "id" : "17"
+      } ],
+      "softwareSystemId" : "11"
+    }, {
+      "automaticLayout" : {
+        "applied" : true,
+        "edgeSeparation" : 0,
+        "implementation" : "Graphviz",
+        "nodeSeparation" : 300,
+        "rankDirection" : "TopBottom",
+        "rankSeparation" : 300,
+        "vertices" : false
+      },
+      "dimensions" : {
+        "height" : 2520,
+        "width" : 890
+      },
+      "elements" : [ {
+        "id" : "48",
+        "x" : 220,
+        "y" : 179
+      }, {
+        "id" : "50",
+        "x" : 220,
+        "y" : 779
+      }, {
+        "id" : "51",
+        "x" : 220,
+        "y" : 1379
+      }, {
+        "id" : "54",
+        "x" : 220,
+        "y" : 1979
+      } ],
+      "externalSoftwareSystemBoundariesVisible" : false,
+      "key" : "DistribuicaoArchitecture",
+      "name" : "Container View: Módulo de Distribuição",
+      "order" : 4,
+      "relationships" : [ {
+        "id" : "56"
+      }, {
+        "id" : "58"
+      }, {
+        "id" : "61"
+      } ],
+      "softwareSystemId" : "47"
+    }, {
+      "automaticLayout" : {
+        "applied" : true,
+        "edgeSeparation" : 0,
+        "implementation" : "Graphviz",
+        "nodeSeparation" : 300,
+        "rankDirection" : "LeftRight",
+        "rankSeparation" : 300,
+        "vertices" : false
+      },
+      "dimensions" : {
+        "height" : 1300,
+        "width" : 3120
+      },
+      "elements" : [ {
+        "id" : "87",
+        "x" : 199,
+        "y" : 159
+      }, {
+        "id" : "91",
+        "x" : 199,
+        "y" : 759
+      }, {
+        "id" : "94",
+        "x" : 949,
+        "y" : 459
+      }, {
+        "id" : "95",
+        "x" : 1699,
+        "y" : 459
+      }, {
+        "id" : "96",
+        "x" : 2449,
+        "y" : 459
+      } ],
+      "externalSoftwareSystemBoundariesVisible" : false,
+      "key" : "MonitoramentoArchitecture",
+      "name" : "Container View: Servidor de Monitoramento (Caddy)",
+      "order" : 6,
+      "relationships" : [ {
+        "id" : "107"
+      }, {
+        "id" : "109"
+      }, {
+        "id" : "110"
+      }, {
+        "id" : "99"
+      } ],
+      "softwareSystemId" : "93"
+    } ],
+    "systemContextViews" : [ {
+      "automaticLayout" : {
+        "applied" : true,
+        "edgeSeparation" : 0,
+        "implementation" : "Graphviz",
+        "nodeSeparation" : 300,
+        "rankDirection" : "LeftRight",
+        "rankSeparation" : 300,
+        "vertices" : false
+      },
+      "dimensions" : {
+        "height" : 700,
+        "width" : 2350
+      },
+      "elements" : [ {
+        "id" : "3",
+        "x" : 199,
+        "y" : 160
+      }, {
+        "id" : "4",
+        "x" : 949,
+        "y" : 160
+      }, {
+        "id" : "5",
+        "x" : 1699,
+        "y" : 160
+      } ],
+      "enterpriseBoundaryVisible" : true,
+      "key" : "StreamingArchitecture",
+      "name" : "System Context View: Distribution Server",
+      "order" : 1,
+      "relationships" : [ {
+        "id" : "8"
+      }, {
+        "id" : "9"
+      } ],
+      "softwareSystemId" : "4"
+    } ]
+  }
+}

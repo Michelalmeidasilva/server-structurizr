@@ -1,35 +1,44 @@
-workspace "Video on Demand" "Architecture for the Video on Demand streaming service" {
+workspace "Video on Demand Architecture" {
+
+    !identifiers hierarchical
 
     model {
-        user = person "User" "A viewer of videos"
-        
-        softwareSystem = softwareSystem "Video On Demand System" "Provides video streaming services" {
-            ingest = container "Ingest Service" "Handles video uploads and basic metadata" "Go"
-            transcode = container "Transcode Service" "Processes video files into multiple bitrates" "Go"
-            packaging = container "Packaging Service" "Segments videos for HLS/DASH" "Go"
-            distribution = container "Distribution Service" "Serves segments to users (CDN/Origin)" "Go"
-            app = container "Streaming App" "The client application (Web/Mobile)" "TypeScript/React"
-            
-            user -> app "Uses"
-            app -> distribution "Requests stream from"
-            ingest -> transcode "Triggers transcoding"
-            transcode -> packaging "Triggers packaging"
-            packaging -> distribution "Push to storage/CDN"
-        }
+        !include model_architecture_streaming.dsl
+        !include model_modulo_ingestao.dsl
+        !include model_modulo_transcodificacao.dsl
+        !include model_modulo_distribuicao.dsl
+        !include model_modulo_empacotamento.dsl
+        !include model_modulo_monitoramento.dsl
+        !include model_modulo_reproducao.dsl
     }
 
     views {
-        systemContext softwareSystem {
-            include *
-            autolayout lr
-        }
-
-        container softwareSystem {
-            include *
-            autolayout lr
-        }
-
+        !include views_architecture_streaming.dsl
+        !include views_modulo_ingestao.dsl
+        !include views_modulo_transcodificacao.dsl
+        !include views_modulo_distribuicao.dsl
+        !include views_modulo_empacotamento.dsl
+        !include views_modulo_monitoramento.dsl
+        !include views_modulo_reproducao.dsl
+        
         theme default
+        
+        styles {
+            element "Element" {
+                shape RoundedBox
+            }
+            element "Software System" {
+                background #1168bd
+                color #ffffff
+            }
+            element "Container" {
+                background #438dd5
+                color #ffffff
+            }
+            element "Component" {
+                background #85bbf0
+                color #000000
+            }
+        }
     }
-
 }

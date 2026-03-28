@@ -1,0 +1,10 @@
+origem = softwareSystem "Origem (Ingestão dos vídeos)" "Fonte primária de entrada dos vídeos."
+transcodificacao = softwareSystem "Transcodificação" "Processamento e conversão de vídeos para múltiplos formatos e resoluções adequados para streaming."
+empacotamento = softwareSystem "Empacotamento" "DASH/HLS - Empacotamento para protocolos de streaming adaptativo."
+distribution = softwareSystem "Distribution Server" "Servidor de distribuição (CDN/Edge) para os clientes."
+mediaPlayers = softwareSystem "Media Players" "Clientes reprodutores de mídia na ponta final."
+
+origem -> transcodificacao "Envia vídeo para"
+transcodificacao -> empacotamento "Repassa os arquivos convertidos para"
+empacotamento -> distribution "Disponibiliza os segmentos via"
+distribution -> mediaPlayers "Entrega os vídeos para"
